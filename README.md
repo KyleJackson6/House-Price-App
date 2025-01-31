@@ -19,12 +19,10 @@ scikit-learn
 tensorflow
 scikeras
 joblib
-You can install the required libraries using pip:
 
-bash
-Copy
+
+You can install the required libraries using pip:
 'pip install pandas numpy scikit-learn tensorflow scikeras joblib'
-Usage
 
 Data Preparation:
 The dataset house_data.csv should be placed in the specified directory.
