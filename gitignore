@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environment folders
+venv/
+env/
+
+# Model and ML artifacts
+*.keras
+*.pkl
+*.h5
+
+# Streamlit cache and config
+.streamlit/
+
+# Logs and output
+*.log
+*.png
+training_loss_plot.png
+
+# System files
+.DS_Store
