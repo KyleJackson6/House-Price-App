@@ -1,71 +1,147 @@
-# House Price Prediction Model
+# 🏡 House Price Prediction App
 
-This repository contains a machine learning model for predicting house prices based on various features. The model is built using TensorFlow and Keras, and it utilizes a neural network for regression tasks. The project includes data preprocessing, model training, hyperparameter tuning, and a function for estimating house prices based on user input.
+This repository contains a machine learning model for predicting house prices in **King County, Washington** (Seattle area) based on 12 key home features. The model is built using **TensorFlow/Keras** and deployed via a clean **Streamlit** web interface.
 
-Table of Contents
+---
 
-Installation
-Usage
-Model Details
-Results
-License
-Installation
+## 📅 Table of Contents
+- [Installation](#installation)
+- [Data](#data)
+- [Training (HP.py)](#training-hppy)
+- [Prediction UI (app.py)](#prediction-ui-apppy)
+- [Model Architecture](#model-architecture)
+- [Evaluation](#evaluation)
+- [Deployment](#deployment)
+- [Structure](#structure)
+- [License](#license)
 
-To run this project, you need to have Python installed along with the following libraries:
+---
 
-pandas
+## ⚙️ Installation
+
+Create a Python 3.10 virtual environment (required for TensorFlow compatibility):
+
+```bash
+python3.10 -m venv venv310
+source venv310/bin/activate  # or .\venv310\Scripts\activate on Windows
+```
+
+Install required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+### requirements.txt:
+```txt
+streamlit
+tensorflow==2.15.0
+scikit-learn==1.3.2
 numpy
-scikit-learn
-tensorflow
-scikeras
-joblib
+pandas
+```
 
+---
 
-You can install the required libraries using pip:
-'pip install pandas numpy scikit-learn tensorflow scikeras joblib'
+## 📊 Data
 
-Data Preparation:
-The dataset house_data.csv should be placed in the specified directory.
-The script preprocesses the data by dropping unnecessary columns and filling missing values with the median.
-Model Training:
-The script defines a neural network model using TensorFlow and Keras.
-Hyperparameter tuning is performed using GridSearchCV to find the best parameters for the model.
-Model Evaluation:
-The model is evaluated on a test set using Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE).
-Price Estimation:
-The script includes a function estimate_price that allows users to input house features and get a predicted price.
-To run the script, use the following command:
+- Dataset: `house_data.csv`
+- Location: **King County, Washington, USA**
+- Features used:  
+  `bedrooms`, `bathrooms`, `sqft_living`, `sqft_lot`, `floors`, `condition`, `grade`, `yr_built`, `zipcode`, `lat`, `long`, `sqft_living15`
+- Target: `price` (log-transformed during training)
 
-Create venv and activate
-'pip install pandas numpy scikit-learn tensorflow scikeras joblib'
-Run 'python HP.py' and let it train
-Then run 'house_price_app.py'
+---
 
-Model Architecture:
-Input layer with shape corresponding to the number of features.
-Four hidden layers with ReLU activation and dropout for regularization.
-Output layer with a single neuron for regression.
-Hyperparameters:
+## 💡 Training (`HP.py`)
 
-Best parameters found by GridSearchCV:
-batch_size: 128
-epochs: 300
-dropout_rate: 0.2
-learning_rate: 0.005
+This script preprocesses the data, trains the neural network model using:
+- **Batch Size**: 128
+- **Epochs**: 300
+- **Dropout Rate**: 0.2
+- **Learning Rate**: 0.005
 
-Evaluation Metrics:
-Best cross-validated MAE: 74870.22
-MAE on test set: [Value from your run]
-RMSE on test set: [Value from your run]
+```python
+# Highlight: Feature list
+features = [
+    'bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors',
+    'condition', 'grade', 'yr_built', 'zipcode', 'lat', 'long', 'sqft_living15'
+]
+```
 
-Results
+- Target values are log-transformed using `np.log1p(y)`
+- Final evaluation inverts the transform using `np.expm1()`
+- Model and scaler are saved as `HP.keras` and `scaler.pkl`
 
-The model achieved a cross-validated MAE of 74870.22. The final evaluation on the test set yielded the following results:
+To retrain the model locally:
+```bash
+python HP.py
+```
+This will regenerate `HP.keras`, `scaler.pkl`, and `training_loss_plot.png`.
 
-Mean Absolute Error (MAE): [Value from your run]
-Root Mean Squared Error (RMSE): [Value from your run]
-License
+---
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+## 🔢 Prediction UI (`app.py`)
 
-Feel free to contribute to this project by submitting issues or pull requests. For any questions, please contact [Kyle Jackson] at [Kyjack66@gmail.com].
+- Built with **Streamlit**
+- Users enter home features in a form
+- `zipcode` is selected from a dropdown
+- `lat` and `long` are **auto-filled** based on selected `zipcode`
+- Output: estimated home price in USD
+
+```python
+# Auto-fill lat/long based on zipcode
+lat, long = zip_lat_long[zipcode]['lat'], zip_lat_long[zipcode]['long']
+```
+
+To launch the app locally:
+```bash
+streamlit run app.py
+```
+
+---
+
+## 📈 Model Architecture
+- Input layer with 12 features
+- Dense (128), ReLU
+- Dropout (0.2)
+- Dense (64), ReLU
+- Output: Dense (1) for regression
+
+---
+
+## 🌟 Evaluation
+
+| Metric | Value |
+|--------|-------|
+| Best Cross-Validated MAE | ~74,870 |
+| Final Test MAE | ~89,638.35 |
+| Final Test R² Score | ~0.7739 |
+
+Plot: `training_loss_plot.png` shows training vs validation loss.
+
+---
+
+## 📁 Structure
+
+House-Price-App/
+├── app.py                  # ✅ Main Streamlit UI
+├── HP.py                   # ✅ Model training script
+├── house_data.csv          # ✅ Dataset
+├── HP.keras                # ✅ Trained model
+├── scaler.pkl              # ✅ Scaler for user input
+├── training_loss_plot.png  # ✅ Visual of training performance
+├── requirements.txt        # ✅ Cleaned dependency list
+├── README.md               # ✅ documentation
+└── Dockerfile              # ✅ For deployment
+
+---
+
+## 📚 License
+
+MIT License. See `LICENSE` file.
+
+---
+
+For questions or contributions, contact **Kyle Jackson** at **Kyjack66@gmail.com**.
+
