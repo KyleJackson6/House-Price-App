@@ -1,10 +1,10 @@
-# 🏡 House Price Prediction App
+# House Price Prediction App
 
 This repository contains a machine learning model for predicting house prices in **King County, Washington** (Seattle area) based on 12 key home features. The model is built using **TensorFlow/Keras** and deployed via a clean **Streamlit** web interface.
 
 ---
 
-## 📅 Table of Contents
+## Table of Contents
 - [Installation](#installation)
 - [Data](#data)
 - [Training (HP.py)](#training-hppy)
@@ -17,7 +17,7 @@ This repository contains a machine learning model for predicting house prices in
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 Create a Python 3.10 virtual environment (required for TensorFlow compatibility):
 
@@ -43,7 +43,7 @@ pandas
 
 ---
 
-## 📊 Data
+## Data
 
 - Dataset: `house_data.csv`
 - Location: **King County, Washington, USA**
@@ -53,7 +53,7 @@ pandas
 
 ---
 
-## 💡 Training (`HP.py`)
+## Training (`HP.py`)
 
 This script preprocesses the data, trains the neural network model using:
 - **Batch Size**: 128
@@ -81,7 +81,7 @@ This will regenerate `HP.keras`, `scaler.pkl`, and `training_loss_plot.png`.
 
 ---
 
-## 🔢 Prediction UI (`app.py`)
+## Prediction UI (`app.py`)
 
 - Built with **Streamlit**
 - Users enter home features in a form
@@ -101,7 +101,7 @@ streamlit run app.py
 
 ---
 
-## 📈 Model Architecture
+## Model Architecture
 - Input layer with 12 features
 - Dense (128), ReLU
 - Dropout (0.2)
@@ -110,7 +110,7 @@ streamlit run app.py
 
 ---
 
-## 🌟 Evaluation
+## Evaluation
 
 | Metric | Value |
 |--------|-------|
@@ -122,8 +122,8 @@ Plot: `training_loss_plot.png` shows training vs validation loss.
 
 ---
 
-## 📁 Structure
-
+## Structure
+```
 House-Price-App/
 ├── app.py                  # ✅ Main Streamlit UI
 ├── HP.py                   # ✅ Model training script
@@ -134,10 +134,10 @@ House-Price-App/
 ├── requirements.txt        # ✅ Cleaned dependency list
 ├── README.md               # ✅ documentation
 └── Dockerfile              # ✅ For deployment
-
+```
 ---
 
-## 📚 License
+## License
 
 MIT License. See `LICENSE` file.
 
