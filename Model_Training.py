@@ -63,8 +63,8 @@ print(f"✅ MAE: ${mae:,.2f}")
 print(f"✅ R² Score: {r2:.4f}")
 
 # Save model
-model.save("HP.keras")
-print("✅ Model saved as HP.keras")
+model.save("HP_model", save_format="tf")  # SavedModel directory format
+print("✅ Model saved as HP_model")
 
 # Plot loss curve
 plt.figure(figsize=(10, 5))
