@@ -123,7 +123,7 @@ Plot: `training_loss_plot.png` shows training vs validation loss.
 ---
 
 ## Structure
-
+```
 House-Price-App/
 ├── app.py                  # ✅ Main Streamlit UI
 ├── HP.py                   # ✅ Model training script
@@ -134,7 +134,7 @@ House-Price-App/
 ├── requirements.txt        # ✅ Cleaned dependency list
 ├── README.md               # ✅ documentation
 └── Dockerfile              # ✅ For deployment
-
+```
 ---
 
 ## License
