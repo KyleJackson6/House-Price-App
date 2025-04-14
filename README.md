@@ -1,5 +1,8 @@
 # House Price Prediction App
 
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Streamlit](https://img.shields.io/badge/Built_with-Streamlit-orange)
+
 This repository contains a machine learning model for predicting house prices in **King County, Washington** (Seattle area) based on 12 key home features. The model is built using **TensorFlow/Keras** and deployed via a clean **Streamlit** web interface.
 
 ---
@@ -135,12 +138,6 @@ House-Price-App/
 ├── README.md               # ✅ documentation
 └── Dockerfile              # ✅ For deployment
 ```
----
-
-## License
-
-MIT License. See `LICENSE` file.
-
 ---
 
 For questions or contributions, contact **Kyle Jackson** at **Kyjack66@gmail.com**.
