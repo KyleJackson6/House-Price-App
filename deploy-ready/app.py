@@ -35,17 +35,21 @@ with st.form("prediction_form"):
 
 # On submit
 if submit:
-    lat = zip_lat_long[zipcode]['lat']
-    long = zip_lat_long[zipcode]['long']
+    if zipcode not in zip_lat_long:
+        st.error("❌ Selected zipcode is missing coordinates. Please try another.")
+    else:
+        lat = zip_lat_long[zipcode]['lat']
+        long = zip_lat_long[zipcode]['long']
 
-    input_data = np.array([[  # Must match training order
-        bedrooms, bathrooms, sqft_living, sqft_lot, floors,
-        condition, grade, yr_built, zipcode, lat, long, sqft_living15
-    ]])
+        input_data = np.array([[  # Must match training order
+            bedrooms, bathrooms, sqft_living, sqft_lot, floors,
+            condition, grade, yr_built, zipcode, lat, long, sqft_living15
+        ]])
 
-    # Scale and predict
-    scaled_data = scaler.transform(input_data)
-    prediction = model.predict(scaled_data)[0][0]
-    prediction = np.expm1(prediction)  # reverse log1p from training
+        # Scale and predict
+        scaled_data = scaler.transform(input_data)
+        prediction = model(scaled_data).numpy()[0][0]
+        prediction = np.expm1(prediction)  # reverse log1p from training
 
-    st.success(f"🏡 Estimated House Price: **${round(prediction, 2):,.2f}**")
+        st.success(f"🏡 Estimated House Price: **${round(prediction, 2):,.2f}**")
+
