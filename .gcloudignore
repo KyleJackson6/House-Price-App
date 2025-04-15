@@ -1,0 +1,21 @@
+# Ignore virtual environments
+venv*/
+.venv*/
+
+# Ignore training artifacts and large files
+__pycache__/
+*.pyc
+*.ipynb
+*.csv
+*.zip
+*.h5
+*.keras
+*.pkl
+
+# EXCEPT these files we need:
+!HP.keras
+!scaler.pkl
+!app.py
+!requirements.txt
+!Dockerfile
+!house_data.csv

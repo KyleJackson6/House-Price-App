@@ -59,12 +59,12 @@ y_true_real = np.expm1(y_test)
 mae = mean_absolute_error(y_true_real, y_pred_real)
 r2 = r2_score(y_true_real, y_pred_real)
 
-print(f"✅ MAE: ${mae:,.2f}")
-print(f"✅ R² Score: {r2:.4f}")
+print(f" MAE: ${mae:,.2f}")
+print(f" R² Score: {r2:.4f}")
 
 # Save model
-model.export("HP_model")
-print("✅ Model saved as HP_model")
+model.save("HP.keras")  #  creates a single file, not a folder
+print(" Model saved as HP.keras")
 
 # Plot loss curve
 plt.figure(figsize=(10, 5))

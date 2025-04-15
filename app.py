@@ -45,7 +45,8 @@ if submit:
 
     # Scale and predict
     scaled_data = scaler.transform(input_data)
-    prediction = model.predict(scaled_data)[0][0]
+    input_tensor = tf.convert_to_tensor(scaled_data.astype(np.float32))  # Ensure float32
+    prediction = model.predict(input_tensor)[0][0]
     prediction = np.expm1(prediction)  # reverse log1p from training
 
     st.success(f"🏡 Estimated House Price: **${round(prediction, 2):,.2f}**")
