@@ -8,7 +8,7 @@ import pickle
 import matplotlib.pyplot as plt
 
 # Load dataset
-df = pd.read_csv("house_data.csv")
+df = pd.read_csv("data/house_data.csv")
 
 # Use 12 features (including zipcode, lat, long)
 features = [
