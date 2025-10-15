@@ -1,5 +1,5 @@
 """
-Streamlit Web App — House Price Prediction (using pretrained model)
+Streamlit Web App — House Price Prediction
 
 Features:
 - Loads pretrained Keras model (HP.keras) and scaler (scaler.pkl)
@@ -7,7 +7,6 @@ Features:
 - Supports CSV upload for bulk predictions
 - Displays predicted prices, summary metrics, and chart visualization
 - Uses multiple Streamlit components: file_uploader, number_input, selectbox, metric, dataframe, download_button, altair_chart, map
-- Designed for Streamlit Cloud deployment (relative paths only)
 
 Run locally:
     streamlit run app.py
