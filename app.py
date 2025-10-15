@@ -51,7 +51,7 @@ def predict_price(model, scaler, input_df):
 # ---------------------- App Layout ----------------------
 def main():
     st.set_page_config(page_title="House Price Predictor", layout="wide")
-    st.title("🏠 House Price Prediction App")
+    st.title("House Price Prediction App")
     st.markdown("This app uses a pretrained neural network model to estimate house prices.")
 
     # Load model and scaler
@@ -98,7 +98,7 @@ def main():
 
     # ---------------------- Bulk Predictions ----------------------
     st.markdown("---")
-    st.header("📂 Bulk Predictions (CSV Upload)")
+    st.header("Bulk Predictions (CSV Upload)")
     uploaded_file = st.file_uploader("Upload CSV with house features", type=['csv'])
 
     if uploaded_file is not None:
